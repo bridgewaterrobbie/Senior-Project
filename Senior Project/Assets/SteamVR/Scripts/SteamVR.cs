@@ -1,4 +1,4 @@
-﻿//========= Copyright 2014, Valve Corporation, All rights reserved. ===========
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
 // Purpose: Access to SteamVR system (hmd) and compositor (distort) interfaces.
 //
@@ -17,7 +17,12 @@ public class SteamVR : System.IDisposable
 	private static bool _enabled = true;
 	public static bool enabled
 	{
-		get { return _enabled; }
+		get
+		{
+			if (!UnityEngine.VR.VRSettings.enabled)
+				enabled = false;
+			return _enabled;
+		}
 		set
 		{
 			_enabled = value;
