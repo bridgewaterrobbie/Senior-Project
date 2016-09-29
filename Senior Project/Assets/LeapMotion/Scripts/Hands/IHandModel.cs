@@ -5,10 +5,10 @@ using UnityEditor;
 #endif
 
 /** IHandModel defines abstract methods as a template for building Leap hand models*/
-namespace Leap.Unity{
+namespace Leap.Unity {
   public enum Chirality { Left, Right, Either };
   public enum ModelType { Graphics, Physics };
-  
+
   [ExecuteInEditMode]
   public abstract class IHandModel : MonoBehaviour {
     public event Action OnBegin;
@@ -18,11 +18,11 @@ namespace Leap.Unity{
       get { return isTracked; }
     }
 
-    public abstract Chirality Handedness { get; }
+    public abstract Chirality Handedness { get; set; }
     public abstract ModelType HandModelType { get; }
-    public virtual void InitHand(){
+    public virtual void InitHand() {
     }
-  
+
     public virtual void BeginHand() {
       if (OnBegin != null) {
         OnBegin();
@@ -36,23 +36,38 @@ namespace Leap.Unity{
       }
       isTracked = false;
     }
-    public abstract Hand GetLeapHand(); 
+    public abstract Hand GetLeapHand();
     public abstract void SetLeapHand(Hand hand);
 
-  #if UNITY_EDITOR
-    void Awake() {
-      if (!EditorApplication.isPlaying) {
-        SetLeapHand(TestHandFactory.MakeTestHand(0, 0, Handedness == Chirality.Left).TransformedCopy(UnityMatrixExtension.GetLeapMatrix(transform)));
-        InitHand();
-      }
+    /// <summary>
+    /// Returns whether or not this hand model supports editor persistence.  This is false by default and must be
+    /// opt-in by a developer making their own hand model script if they want editor persistence.
+    /// </summary>
+    public virtual bool SupportsEditorPersistence() {
+      return false;
     }
 
+#if UNITY_EDITOR
     void Update() {
-      if (!EditorApplication.isPlaying) {
-        SetLeapHand(TestHandFactory.MakeTestHand(0, 0, Handedness == Chirality.Left).TransformedCopy(UnityMatrixExtension.GetLeapMatrix(transform)));
-        UpdateHand();
+      Transform editorPoseSpace;
+      LeapServiceProvider leapServiceProvider = FindObjectOfType<LeapServiceProvider>();
+      if (leapServiceProvider) {
+        editorPoseSpace = leapServiceProvider.transform;
+      }
+      else editorPoseSpace = transform;
+      if (!EditorApplication.isPlaying && SupportsEditorPersistence()) {
+        Hand hand = TestHandFactory.MakeTestHand(0, 0, Handedness == Chirality.Left).TransformedCopy(UnityMatrixExtension.GetLeapMatrix(editorPoseSpace));
+        if (GetLeapHand() == null) {
+          SetLeapHand(hand);
+          InitHand();
+          BeginHand();
+          UpdateHand();
+        } else {
+          SetLeapHand(hand);
+          UpdateHand();
+        }
       }
     }
-  #endif
+#endif
   }
 }
