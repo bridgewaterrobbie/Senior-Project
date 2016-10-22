@@ -5,8 +5,8 @@ public class SteamVR_TestTrackedCamera : MonoBehaviour
 {
 	public Material material;
 	public Transform target;
-    public bool undistorted = false;
-    public bool cropped = false;
+	public bool undistorted = true;
+	public bool cropped = true;
 
 	void OnEnable()
 	{

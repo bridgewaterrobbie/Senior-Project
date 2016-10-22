@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
 public struct Point {
 
 	private Vector3 v;
