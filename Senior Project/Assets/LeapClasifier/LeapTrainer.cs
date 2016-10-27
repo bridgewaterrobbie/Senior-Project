@@ -872,8 +872,8 @@ public class LeapTrainer : MonoBehaviour
         // Values: 3-6 are accepted
         // Values above 6 are rejected		
         //return nearest;
-        //return (!foundMatch) ? 0f : Mathf.Max(3f - Mathf.Max(nearest - 3f, 0f), 0f) / 3f;
-        return  Mathf.Max(3f - Mathf.Max(nearest - 3f, 0f), 0f) / 3f;
+        return (!foundMatch) ? 0f : Mathf.Max(3f - Mathf.Max(nearest - 3f, 0f), 0f) / 3f;
+        //return  Mathf.Max(3f - Mathf.Max(nearest - 3f, 0f), 0f) / 3f;
     }
 
     /**
