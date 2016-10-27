@@ -74,6 +74,8 @@ public class LeapTrainer : MonoBehaviour
     public float lastHit = 0;    // The timestamp at which the last gesture was identified (recognized or not), used when calculating downtime
 
     public Dictionary<string, List<List<Point>>> gestures = new Dictionary<string, List<List<Point>>>(); // The current set of recorded gestures - names mapped to convolved training data
+
+
     private Dictionary<string, bool> poses = new Dictionary<string, bool>();      // Though all gesture data is stored in the gestures object, here we hold flags indicating which gestures were recorded as poses
     private List<Point> gesture = null;                           // Actual recording gesture
 
@@ -102,7 +104,8 @@ public class LeapTrainer : MonoBehaviour
         /*
 		 * The current DEFAULT recognition algorithm is geometric template matching - which is initialized here.
 		 */
-        this.templateMatcher = new GeometricalMatcher();
+        //this.templateMatcher = new GeometricalMatcher();
+        this.templateMatcher = new PDollarMatcher();
         if (this.templateMatcher == null)
             Debug.Log("root null");
         else
@@ -558,7 +561,7 @@ public class LeapTrainer : MonoBehaviour
            List<Point> p = trainingGestures[i];
             if (t == null)
             {
-                this.templateMatcher = new GeometricalMatcher();
+                this.templateMatcher = new PDollarMatcher();
                 Debug.Log("Not null anymore!!");
             }
 
@@ -846,7 +849,8 @@ public class LeapTrainer : MonoBehaviour
     float correlate(string gestureName, List<List<Point>> trainingGestures, List<Point> gesture)
     {
 
-        List<Point> parsedGesture = this.templateMatcher.process(gesture);
+        
+        List<Point> parsedGesture = this.templateMatcher.process(gesture);   
 
         float nearest = float.PositiveInfinity, distance;
         bool foundMatch = false;
