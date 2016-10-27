@@ -13,7 +13,7 @@ public class ThomasLeapTrainer : MonoBehaviour {
     void Start () {
         if (trainer != null)
         {
-            Debug.Log("Something is not wrong!");
+          //  Debug.Log("Something is not wrong!");
             //trainer = new LeapTrainer();
 
             recorder = new LeapRecorder();
@@ -25,7 +25,7 @@ public class ThomasLeapTrainer : MonoBehaviour {
            // trainer.loadFromFrames("STOP_pose", recorder.GetFrames(), true);
 
 
-            loadGesture("DesktopRecording01.json", "fist", true);
+            loadGesture("DesktopRecording01.json", "The First", true);
             trainer.OnGestureRecognized += (name, value, allHits) => {
                 Debug.Log("Gesture " + name + " recognized");
             };

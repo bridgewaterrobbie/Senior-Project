@@ -31,6 +31,21 @@ public class Gesture
 
         // normalizes the array of points with respect to scale, origin, and number of points
 
+        Points = Resample(Points, SAMPLING_RESOLUTION);
+
+        foreach (Point p in this.Points)
+        {
+            if (float.IsNaN(p.x))
+            {
+                //   Debug.Log("The NaN is after resample");
+                break;
+            }
+            if (float.IsInfinity(p.x))
+            {
+                //  Debug.Log("The Infin is after Resample");
+                break;
+            }
+        }
 
         Points = TranslateTo(Points, Centroid(Points));
 
@@ -38,43 +53,29 @@ public class Gesture
         {
             if (float.IsNaN(p.x))
             {
-                Debug.Log("The NaN is after Translate");
+              //  Debug.Log("The NaN is after Translate");
                 break;
             }
             if (float.IsInfinity(p.x))
             {
-                Debug.Log("The Infin is after Translate");
+                //Debug.Log("The Infin is after Translate");
                 break;
             }
         }
-        Points = Resample(Points, SAMPLING_RESOLUTION);
 
-        foreach (Point p in this.Points)
-        {
-            if (float.IsNaN(p.x)) { 
-                Debug.Log("The NaN is after resample");
-            break;
-            }
-            if (float.IsInfinity(p.x))
-            {
-                Debug.Log("The Infin is after Resample");
-                break;
-            }
-        }
-        
         Points = Scale(Points);
 
         foreach (Point p in this.Points)
         {
             if (float.IsNaN(p.x))
             {
-                Debug.Log("The NaN is after Scale");
+               // Debug.Log("The NaN is after Scale");
                 //  Debug.Log(points);
                 break;
             }
             if (float.IsInfinity(p.x))
             {
-                Debug.Log("The Infin is after Scale");
+               // Debug.Log("The Infin is after Scale");
                 break;
             }
 
@@ -86,10 +87,10 @@ public class Gesture
         Point lastPoint = new Point(0, 0, 0, 0);
         for(int i = 0; i<points.Length;i++)
         {
-            if (float.IsInfinity(points[i].x))
+            if (float.IsInfinity(points[i].x) || float.IsNaN(points[i].x))
             {
                 points[i] = lastPoint;
-                Debug.Log("Got one infinity");
+                //Debug.Log("Got one infinity");
             }
             lastPoint = points[i];
         }
@@ -114,6 +115,7 @@ public class Gesture
             if (minx > points[i].x) minx = points[i].x;
             if (miny > points[i].y) miny = points[i].y;
             if (minz > points[i].z) minz = points[i].z;
+
             if (maxx < points[i].x) maxx = points[i].x;
             if (maxy < points[i].y) maxy = points[i].y;
             if (maxz < points[i].z) maxz = points[i].z;
@@ -135,11 +137,16 @@ public class Gesture
     public Point[] TranslateTo(Point[] points, Point p)
     {
         Point[] newPoints = new Point[points.Length];
+
         for (int i = 0; i < points.Length; i++)
         {
-            newPoints[i] = new Point(points[i].x - p.x, points[i].y - p.y, points[i].z - p.z, points[i].stroke);
-            if (float.IsNaN(newPoints[i].x))
-                Debug.Log("Translate to is getting a NaN, handed point is: " + points[i].ToString());
+            newPoints[i] = new Point(
+                points[i].x - p.x, 
+                points[i].y - p.y, 
+                points[i].z - p.z, 
+                points[i].stroke);
+         //   if (float.IsNaN(newPoints[i].x))
+               // Debug.Log("Translate to is getting a NaN, handed point is: " + points[i].ToString());
         }
         return newPoints;
     }
@@ -159,8 +166,8 @@ public class Gesture
             cz += points[i].z;
         }
         Point r = new Point(cx / points.Length, cy / points.Length, cz / points.Length, 0);
-        if (float.IsNaN(r.x) || float.IsInfinity(r.x))
-            Debug.Log("During Centroid we encountered an issue. Points length is: " + points.Length + " and the input point cx was" + cx);
+     //   if (float.IsNaN(r.x) || float.IsInfinity(r.x))
+          //  Debug.Log("During Centroid we encountered an issue. Points length is: " + points.Length + " and the input point cx was" + cx);
 
         return new Point(cx / points.Length, cy / points.Length, cz / points.Length, 0);
     }

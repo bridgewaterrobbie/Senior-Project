@@ -11,8 +11,21 @@ public class PDollarMatcher : TemplateMatcher {
     public float match(List<Point> gesture, List<Point> trainingGesture)
     {
         Gesture a = new Gesture(gesture.ToArray(), "A");
-        float dist = GreedyCloudMatch(a.Points, trainingGesture.ToArray());
-        return dist;
+        Gesture b = new Gesture(trainingGesture.ToArray(), "B");
+
+        var l = a.Points.Length;
+        //The JS says it should be 1-this.e, but it seems to be 0 anyways
+        int step = (int)Math.Floor(Math.Pow(l, 1));
+        float min = float.PositiveInfinity;
+
+        for (var i = 0; i < l; i += step)
+        {
+
+            min = Math.Min(min, Math.Min(this.CloudDistance(a.Points, b.Points, i), this.CloudDistance(b.Points, a.Points, i)));
+        }
+
+        //float dist = GreedyCloudMatch(a.Points, trainingGesture.ToArray());
+        return min;
     }
 
     public List<Point> process(List<Point> gesture)
@@ -22,8 +35,8 @@ public class PDollarMatcher : TemplateMatcher {
         List<Point> l = new List<Point>(g.Points);
         foreach (Point p in l)
         {
-            if (float.IsNaN(p.x))
-                Debug.Log("The NaN is after Scale");
+          ///programm  if (float.IsNaN(p.x))
+              //  Debug.Log("The NaN is after Scale");
         }
         return l;
        
@@ -106,7 +119,7 @@ public class PDollarMatcher : TemplateMatcher {
                 }
             }
 
-                matched[index] = true; // point index from the 2nd cloud is matched to point i from the 1st cloud
+            matched[index] = true; // point index from the 2nd cloud is matched to point i from the 1st cloud
 
             float weight = 1.0f - ((i - startIndex + n) % n) / (1.0f * n);
             sum += weight * minDistance; // weight each distance with a confidence coefficient that decreases from 1 to 0
