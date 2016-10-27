@@ -562,7 +562,7 @@ public class LeapTrainer : MonoBehaviour
             if (t == null)
             {
                 this.templateMatcher = new PDollarMatcher();
-                Debug.Log("Not null anymore!!");
+
             }
 
             else
@@ -793,7 +793,7 @@ public class LeapTrainer : MonoBehaviour
                 hit = this.correlate(knownGesture.Key, knownGesture.Value, gesture);
                 if(hit!=0)
                 {
-                    Debug.Log("Hit is not 0!!!!!!!!!!!!!!!!!");
+                    Debug.Log("Hit is not 0!!!!!!!!!!!!!!!!! It is:" + hit);
                 }
             }
 
@@ -823,7 +823,6 @@ public class LeapTrainer : MonoBehaviour
         
         if (recognized)
         {
-            Debug.Log("recognized");
             if (OnGestureRecognized != null)
                 OnGestureRecognized(closestGestureName, bestHit, allHits);
         }

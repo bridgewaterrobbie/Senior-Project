@@ -33,4 +33,10 @@ public struct Point {
 
 		this.stroke = stroke; // stroke ID to which this point belongs (1,2,...)
 	}
+
+    public string ToString()
+    {
+        string s = "" + v.x + " " + v.y + " " + v.z;
+        return s;
+    }
 }

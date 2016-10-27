@@ -12,8 +12,6 @@ public class PDollarMatcher : TemplateMatcher {
     {
         Gesture a = new Gesture(gesture.ToArray(), "A");
         float dist = GreedyCloudMatch(a.Points, trainingGesture.ToArray());
-
-
         return dist;
     }
 
@@ -21,18 +19,14 @@ public class PDollarMatcher : TemplateMatcher {
     {
         //List<Point> points = new List<Point>();
         Gesture g = new Gesture(gesture.ToArray(), "NoName");
-
-        return new List<Point>(g.Points);
-        /*int stroke = 1;
-
-        foreach (var v in gesture)
+        List<Point> l = new List<Point>(g.Points);
+        foreach (Point p in l)
         {
-            Point point = new Point(v.x, v.y, v.z, stroke);
-            points.Add(point);
-            stroke++;
-        }*/
-       // return this.translateTo(this.scale(this.resample(points, this.pointCount)), this.origin);
-
+            if (float.IsNaN(p.x))
+                Debug.Log("The NaN is after Scale");
+        }
+        return l;
+       
     }
 
     // Use this for initialization
@@ -99,15 +93,21 @@ public class PDollarMatcher : TemplateMatcher {
                 if (!matched[j])
                 {
                     float dist = squaredValues(points1[i], points2[j]);  // use squared Euclidean distance to save some processing time
+                    if(float.IsNaN(dist))
+                    {
+                       // Debug.Log("NaN and P1= " +points1[i].ToString() + " and P2= " + points2[j].ToString());
+                    }
                     if (dist < minDistance)
                     {
                         minDistance = dist;
                         index = j;
                     }
+              
                 }
             }
-            if(index!=-1)
+
                 matched[index] = true; // point index from the 2nd cloud is matched to point i from the 1st cloud
+
             float weight = 1.0f - ((i - startIndex + n) % n) / (1.0f * n);
             sum += weight * minDistance; // weight each distance with a confidence coefficient that decreases from 1 to 0
             i = (i + 1) % n;
