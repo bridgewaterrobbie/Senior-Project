@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Senior Project/Assets/LeapC/StructMarshal.cs.meta
+guid: fce2435feeea94043a626840a6ae76ae
+timeCreated: 1456888101
+=======
+guid: f7900e2b00e3543848b7bec85efbafc8
+timeCreated: 1431581108
+>>>>>>> 4a3e1d6546375caea4e12609c9be6e8d42cb59fb:Senior Project/Assets/LeapMotion/Scripts/Utils/EnableUpdateOrdering.cs.meta
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

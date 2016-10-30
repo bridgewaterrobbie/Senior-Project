@@ -1,12 +1,18 @@
 fileFormatVersion: 2
 guid: fd815635398474cbbba564563a209f82
+<<<<<<< HEAD
 timeCreated: 1457404118
 licenseType: Pro
+=======
+>>>>>>> 4a3e1d6546375caea4e12609c9be6e8d42cb59fb
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
+<<<<<<< HEAD
   assetBundleName: 
   assetBundleVariant: 
+=======
+>>>>>>> 4a3e1d6546375caea4e12609c9be6e8d42cb59fb

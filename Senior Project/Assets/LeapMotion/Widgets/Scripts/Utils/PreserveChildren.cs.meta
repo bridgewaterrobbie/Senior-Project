@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Senior Project/Assets/LeapMotion/Editor/LeapServiceProviderEditor.cs.meta
+guid: 820a690b04c5ed7449f6d0bd3a657f06
+timeCreated: 1458765852
+=======
+guid: 4e0063e5fff6a42b4aab6c62da69f184
+timeCreated: 1435980253
+>>>>>>> 4a3e1d6546375caea4e12609c9be6e8d42cb59fb:Senior Project/Assets/LeapMotion/Widgets/Scripts/Utils/PreserveChildren.cs.meta
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

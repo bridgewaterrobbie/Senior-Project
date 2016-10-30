@@ -1,0 +1,106 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Senior Project/Assets/Plugins/x86/LeapC.dll.meta
+guid: bc1881ef45c87f04c9db943f9d41d6a3
+timeCreated: 1455310956
+=======
+guid: e3a004e890a301c4f8bd139a5ac5014c
+timeCreated: 1442950791
+>>>>>>> 4a3e1d6546375caea4e12609c9be6e8d42cb59fb:Senior Project/Assets/Plugins/x86_64/LeapCSharp.dll.meta
+licenseType: Free
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  platformData:
+<<<<<<< HEAD:Senior Project/Assets/Plugins/x86/LeapC.dll.meta
+    Android:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 1
+      settings:
+        CPU: x86
+        DefaultValueInitialized: true
+        OS: AnyOS
+    Linux:
+      enabled: 1
+      settings:
+        CPU: x86
+    Linux64:
+      enabled: 0
+      settings:
+        CPU: None
+    LinuxUniversal:
+      enabled: 0
+      settings:
+        CPU: x86
+    OSXIntel:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+    OSXIntel64:
+      enabled: 0
+      settings:
+        CPU: None
+    OSXUniversal:
+      enabled: 0
+      settings:
+        CPU: x86
+    Win:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+    Win64:
+      enabled: 0
+      settings:
+        CPU: None
+=======
+    Any:
+      enabled: 1
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        CPU: x86_64
+        DefaultValueInitialized: true
+    Linux:
+      enabled: 0
+      settings:
+        CPU: None
+    Linux64:
+      enabled: 1
+      settings:
+        CPU: x86_64
+    LinuxUniversal:
+      enabled: 0
+      settings:
+        CPU: x86_64
+    OSXIntel:
+      enabled: 0
+      settings:
+        CPU: None
+    OSXIntel64:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+    OSXUniversal:
+      enabled: 0
+      settings:
+        CPU: x86_64
+    Win:
+      enabled: 0
+      settings:
+        CPU: None
+    Win64:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+>>>>>>> 4a3e1d6546375caea4e12609c9be6e8d42cb59fb:Senior Project/Assets/Plugins/x86_64/LeapCSharp.dll.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
